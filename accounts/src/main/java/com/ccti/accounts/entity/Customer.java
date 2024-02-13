@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "CUSTOMER" )
 @Getter
 @Setter
 @ToString
@@ -12,11 +13,11 @@ import lombok.*;
 public class Customer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customer_id;
+    private Long customerId;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
     private String email;
     @Column(name = "mobile_number")
-    private String mobile_number;
+    private String mobileNumber;
 }
