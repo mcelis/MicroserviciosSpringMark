@@ -31,6 +31,8 @@ public class AccountService implements IAccountService {
         account.setAccountType("saving");
         account.setAccountNumber(accNumber);
         account.setBranchAddress("Principal");
+        account.setCreated_by("System");
+        account.setCreated_at(LocalDateTime.now());
 
         accountRepository.save(account);
     }
