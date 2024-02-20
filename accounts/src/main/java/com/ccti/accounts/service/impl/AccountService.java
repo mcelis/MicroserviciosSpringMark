@@ -3,6 +3,7 @@ package com.ccti.accounts.service.impl;
 import com.ccti.accounts.dto.CustomerDto;
 import com.ccti.accounts.entity.Account;
 import com.ccti.accounts.entity.Customer;
+import com.ccti.accounts.exception.CustomerAlreadyExists;
 import com.ccti.accounts.mapper.CustomerMapper;
 import com.ccti.accounts.repository.AccountRepository;
 import com.ccti.accounts.repository.CustomerRepository;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Random;
 
 
@@ -38,6 +40,12 @@ public class AccountService implements IAccountService {
     }
 
     private Customer createCustomer(CustomerDto customerDto){
+
+        Optional<Customer> existingCustomer = customerRepository.findByEmail(customerDto.getEmail());
+        if(existingCustomer.isPresent()){
+            throw  new CustomerAlreadyExists("El correo electronico" + customerDto.getEmail() + " ya esta registrado");
+        }
+
         Customer customer = CustomerMapper.mapCustomerDtoToCustomer(customerDto);
         customer.setCreated_by("System");
         customer.setCreated_at(LocalDateTime.now());
