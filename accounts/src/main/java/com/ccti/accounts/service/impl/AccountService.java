@@ -49,10 +49,16 @@ public class AccountService implements IAccountService {
         Customer customer = customerRepository.findByEmail(email).orElseThrow(
                 () -> new ResourceNotFound("cliente", "email", email)
         );
-        accountRepository.deleteByCustomerId(customer.getCustomerId());
-        customerRepository.deleteByEmail(customer.getEmail());
 
-        return true;
+        Optional<Account> existingAccount = accountRepository.findByCustomerId(customer.getCustomerId());
+        if(existingAccount.isPresent()){
+            accountRepository.deleteByCustomerId(customer.getCustomerId());
+            customerRepository.deleteByEmail(customer.getEmail());
+
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

@@ -49,9 +49,15 @@ public class AccountsController {
 
     @PostMapping("/delete")
     public ResponseEntity<ResponseDto> deleteCustomerAccount(@RequestParam String email){
-        iAccountService.deleteAccount(email);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new ResponseDto("201", "El cliente ha sido eliminado correctamente !!"));
+        boolean res = iAccountService.deleteAccount(email);
+        if(res) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new ResponseDto("200", "El cliente ha sido eliminado correctamente !!"));
+        }else{
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto("500", "Hubo un error al eliminar el cliente !!"));
+        }
     }
 }
