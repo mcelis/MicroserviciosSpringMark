@@ -1,5 +1,6 @@
 package com.ccti.accounts.Controller;
 
+import com.ccti.accounts.dto.CustomerAccountDto;
 import com.ccti.accounts.dto.CustomerDto;
 import com.ccti.accounts.dto.ResponseDto;
 import com.ccti.accounts.service.IAccountService;
@@ -35,5 +36,22 @@ public class AccountsController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto("201", "La cuenta ha sido creada correctamente !!"));
+    }
+
+    @GetMapping("/fetch")
+    public ResponseEntity<CustomerAccountDto> fetchAccount(@RequestParam String email){
+        CustomerAccountDto customerAccountDto = iAccountService.fetchAccount(email);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(customerAccountDto);
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseDto> deleteCustomerAccount(@RequestParam String email){
+        iAccountService.deleteAccount(email);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto("201", "El cliente ha sido eliminado correctamente !!"));
     }
 }

@@ -1,9 +1,12 @@
 package com.ccti.accounts.service.impl;
 
+import com.ccti.accounts.dto.CustomerAccountDto;
 import com.ccti.accounts.dto.CustomerDto;
 import com.ccti.accounts.entity.Account;
 import com.ccti.accounts.entity.Customer;
 import com.ccti.accounts.exception.CustomerAlreadyExists;
+import com.ccti.accounts.exception.ResourceNotFound;
+import com.ccti.accounts.mapper.AccountMapper;
 import com.ccti.accounts.mapper.CustomerMapper;
 import com.ccti.accounts.repository.AccountRepository;
 import com.ccti.accounts.repository.CustomerRepository;
@@ -22,6 +25,8 @@ public class AccountService implements IAccountService {
 
     private AccountRepository accountRepository;
     private CustomerRepository customerRepository;
+
+
     @Override
     public void createAccount(CustomerDto customerDto) {
         Customer customer = createCustomer(customerDto);
@@ -37,6 +42,35 @@ public class AccountService implements IAccountService {
         account.setCreated_at(LocalDateTime.now());
 
         accountRepository.save(account);
+    }
+
+    @Override
+    public boolean deleteAccount(String email) {
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFound("cliente", "email", email)
+        );
+        accountRepository.deleteByCustomerId(customer.getCustomerId());
+        customerRepository.deleteByEmail(customer.getEmail());
+
+        return true;
+    }
+
+
+    @Override
+    public CustomerAccountDto fetchAccount(String email) {
+
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFound("cliente", "email", email)
+        );
+
+        Account account = accountRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFound("cuenta","customerId", customer.getCustomerId().toString())
+        );
+
+        CustomerAccountDto data = new CustomerAccountDto();
+        data.setAccount(AccountMapper.mapAccountToDto(account));
+        data.setCustomer(CustomerMapper.mapCustomerToDto(customer));
+        return data;
     }
 
     private Customer createCustomer(CustomerDto customerDto){
