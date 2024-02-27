@@ -23,4 +23,13 @@ public class CustomerMapper {
 
         return customer;
     }
+
+    public static Customer mapUpdatingToCustomer(CustomerDto customerDto, Customer customer) {
+
+        customer.setName(customerDto.getName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setMobileNumber(customerDto.getMobileNumber());
+
+        return customer;
+    }
 }

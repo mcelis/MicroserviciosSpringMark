@@ -23,4 +23,13 @@ public class AccountMapper {
 
         return  account;
     }
+
+    public static Account mapUpdatingToAccount(AccountDto accountDto, Account account) {
+
+        account.setAccountNumber(accountDto.getAccountNumber());
+        account.setAccountType(accountDto.getAccountType());
+        account.setBranchAddress(accountDto.getBranchAddress());
+
+        return  account;
+    }
 }

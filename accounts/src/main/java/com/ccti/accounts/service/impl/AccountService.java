@@ -92,4 +92,21 @@ public class AccountService implements IAccountService {
 
         return customerRepository.save(customer);
     }
+
+    @Override
+    public boolean updateAccount(CustomerAccountDto data) {
+        Customer customer = customerRepository.findByEmail(data.getCustomer().getEmail()).orElseThrow(
+                () -> new ResourceNotFound("cliente", "email", data.getCustomer().getEmail())
+        );
+        Customer updateCustomer = CustomerMapper.mapUpdatingToCustomer(data.getCustomer(), customer);
+
+        Account account = accountRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFound("cuenta", "customerId", customer.getCustomerId().toString())
+        );
+        Account updateAccount = AccountMapper.mapUpdatingToAccount(data.getAccount(), account);
+        accountRepository.save(updateAccount);
+        customerRepository.save(updateCustomer);
+        return true;
+
+    }
 }
