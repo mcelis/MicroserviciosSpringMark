@@ -8,7 +8,7 @@ public class AccountMapper {
         AccountDto accountDto = new AccountDto();
 
         accountDto.setAccountNumber(account.getAccountNumber());
-        accountDto.setAccountType(accountDto.getAccountType());
+        accountDto.setAccountType(account.getAccountType());
         accountDto.setBranchAddress(account.getBranchAddress());
 
         return accountDto;

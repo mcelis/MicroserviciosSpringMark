@@ -38,8 +38,8 @@ public class AccountService implements IAccountService {
         account.setAccountType("saving");
         account.setAccountNumber(accNumber);
         account.setBranchAddress("Principal");
-        account.setCreated_by("System");
-        account.setCreated_at(LocalDateTime.now());
+        //account.setCreated_by("System");
+        //account.setCreated_at(LocalDateTime.now());
 
         accountRepository.save(account);
     }
@@ -87,8 +87,8 @@ public class AccountService implements IAccountService {
         }
 
         Customer customer = CustomerMapper.mapCustomerDtoToCustomer(customerDto);
-        customer.setCreated_by("System");
-        customer.setCreated_at(LocalDateTime.now());
+        //customer.setCreated_by("System");
+        //customer.setCreated_at(LocalDateTime.now());
 
         return customerRepository.save(customer);
     }

@@ -16,6 +16,6 @@ public class CustomerDto {
     @Email(message = "Debe especificar un email valido")
     private String email;
     @NotEmpty(message = "El numero de celular es requerido")
-    @Pattern(regexp = "(^$| [0-9](10}))", message = "El numero de cuenta debe contener 10 digitos")
+    @Pattern(regexp = "(^$|[0-9]{10})", message = "el número de telefono debe contener 10 digitos")
     private String mobileNumber;
 }
