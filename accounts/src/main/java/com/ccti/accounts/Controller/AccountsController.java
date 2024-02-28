@@ -2,8 +2,15 @@ package com.ccti.accounts.Controller;
 
 import com.ccti.accounts.dto.CustomerAccountDto;
 import com.ccti.accounts.dto.CustomerDto;
+import com.ccti.accounts.dto.ErrorResponseDto;
 import com.ccti.accounts.dto.ResponseDto;
 import com.ccti.accounts.service.IAccountService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -14,6 +21,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+
+@Tag(
+        name = "Controlador para servicio de cuenta",
+        description = "Endpoints para las operaciones CRUD del servicio"
+)
 
 @Validated
 @AllArgsConstructor
@@ -31,6 +43,28 @@ public class AccountsController {
     public String dateTime(){
         return LocalDateTime.now().toString();
     }
+
+    @Operation(
+            summary = "Crea cuentas en el sistema",
+            description = "Crea un cliente y una cuenta en el sistema"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Http Status created",
+                    content = @Content(
+                    schema = @Schema(implementation = ResponseDto.class)
+            )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Http Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+
+    })
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createAccounts(@Valid @RequestBody CustomerDto customerDto){
