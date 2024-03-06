@@ -1,0 +1,16 @@
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/dto/ErrorResponseDto.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/constants/LoansConstants.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/dto/LoansDto.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/controller/LoansController.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/service/impl/LoansServiceImpl.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/exception/LoanAlreadyExistsException.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/service/ILoansService.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/audit/AuditAwareImpl.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/entity/Loans.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/repository/LoansRepository.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/mapper/LoansMapper.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/exception/GlobalExceptionHandler.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/exception/ResourceNotFoundException.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/dto/ResponseDto.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/entity/BaseEntity.java
+/Users/marco/CursoMicroServicios/bank/loans/src/main/java/com/ccti/loans/LoansApplication.java
