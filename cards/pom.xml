@@ -72,6 +72,20 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.1</version>
+				<configuration>
+					<to>
+						<image>mcelism/bank-${project.artifactId}:pre-release</image>
+						<auth>
+							<username>mcelism</username>
+							<password>jujhiq-Conhy4-wupwyq</password>
+						</auth>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
